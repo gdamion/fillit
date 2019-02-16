@@ -3,41 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   process1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdamion- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcollio- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:31:02 by gdamion-          #+#    #+#             */
-/*   Updated: 2019/02/13 18:36:53 by gdamion-         ###   ########.fr       */
+/*   Updated: 2019/02/16 15:41:09 by pcollio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		processing(char ***tetros, int msize, int fcnt)
+int		processing(char ***tetros, int (*c)[3])
 {
 	char	**res;
 	int		**pos;
-	int		c[3];
+	int		a;
 
-	if (!(res_alloc(&res, msize)))
+	if (!(res_alloc(&res, (*c)[0])))
 		error(tetros, 0);
-	if (!(pos_alloc(&pos, fcnt)))
+	if (!(pos_alloc(&pos, (*c)[1])))
 	{
-		res_clean(res, msize);
+		res_clean(res, (*c)[0]);
 		error(tetros, 0);
 	}
-	c[0] = msize;
-	c[1] = fcnt;
-	c[2] = 0;
-	if (!(try_to_assemble(res, tetros, pos, c)))
+	while (1)
 	{
-		res_clean(res, msize);
-		pos_clean(pos, fcnt);
-		return (0);
+		a = try_to_assemble(res, tetros, &pos, c);
+		if (a == 0)
+		{
+			res_clean(res, (*c)[0]);
+			pos_clean(pos, (*c)[1]);
+			return (0);
+		}
+		else if (a == 1)
+			continue;
+		print_res(res);
+		exit(1);
 	}
-	print_res(res);
-	res_clean(res, msize);
-	pos_clean(pos, fcnt);
-	return (1);
 }
 
 int		pos_alloc(int ***pos, int fcnt)

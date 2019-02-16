@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdamion- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcollio- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 16:42:54 by pcollio-          #+#    #+#             */
-/*   Updated: 2019/02/13 18:27:06 by gdamion-         ###   ########.fr       */
+/*   Updated: 2019/02/16 15:35:25 by pcollio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ void	standart_pose(char ***tetros, int fnum);
 void	standart_pose2(char ***tetros, int fnum);
 void	error(char ***tetros, int a);
 
-int		processing(char ***tetros, int msize, int fcnt);
+int		processing(char ***tetros, int (*c)[3]);
 int		pos_alloc(int ***pos, int fcnt);
 int		res_alloc(char ***res, int msize);
 void	pos_clean(int **pos, int n);
 void	res_clean(char **res, int n);
 
-int		try_to_assemble(char **res, char ***tetros, int **pos, int c[3]);
-int		add_if_possible(char **res, char **tetro, int *pos, int msize);
-int		add_if_possible2(char **res, char **tetro, int *pos, int (*b)[4]);
-int		add_if_possible3(char **res, char **tetro, int *pos, int (*b)[4]);
+int		try_to_assemble(char **res, char ***tetros, int ***pos, int (*c)[3]);
+int		add_if_possible(char **res, char **tetro, int **pos, int msize);
+int		add_if_possible2(char **res, char **tetro, int **pos, int (*b)[4]);
+int		add_if_possible3(char **res, char **tetro, int **pos, int (*b)[4]);
 
-void	tetro_add(char **res, char **tetro, int *pos);
-void	tetro_del(char **res, char **tetro, int *pos);
+void	tetro_add(char **res, char **tetro, int **pos);
+void	tetro_del(char **res, char **tetro, int **pos);
 void	print_res(char **res);
 
 #endif

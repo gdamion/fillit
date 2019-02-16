@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdamion- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pcollio- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:27:45 by gdamion-          #+#    #+#             */
-/*   Updated: 2019/02/13 18:28:51 by gdamion-         ###   ########.fr       */
+/*   Updated: 2019/02/16 15:49:59 by pcollio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	char	***tetros;
-	int		msize;
-	int		fnum;
+	int		c[3];
 
-	fnum = 0;
+	c[1] = 0;
+	c[2] = 0;
 	tetros = (char***)malloc(sizeof(char***) * (26 + 1));
 	ft_bzero(tetros, sizeof(char***) * 27);
 	if (argc != 2)
@@ -28,14 +28,11 @@ int		main(int argc, char **argv)
 		exit(0);
 	}
 	if (!(fd = open(argv[1], O_RDONLY)))
-	{
 		error(tetros, 0);
-		exit(0);
-	}
-	input(tetros, &fnum, fd);
-	msize = sqrt_spec(fnum);
-	while (!(processing(tetros, msize, fnum + 1)))
-		msize++;
+	input(tetros, &(c[1]), fd);
+	c[0] = sqrt_spec(c[1]);
+	while (!(processing(tetros, &c)))
+		c[0]++;
 	error(tetros, 1);
 	return (0);
 }
@@ -66,12 +63,13 @@ int		input(char ***tetros, int *fnum, int fd)
 	standart_pose(tetros, *fnum);
 	if (rd == 21)
 	{
-		*fnum += 1;
+		(*fnum)++;
 		input(tetros, fnum, fd);
 		return (1);
 	}
 	if (rd != 20)
 		error(tetros, 0);
+	(*fnum)++;
 	return (0);
 }
 
@@ -98,8 +96,7 @@ void	tetro_validity(char *t, char ***tetros)
 		c[0]++;
 	}
 	if ((t[c[0]] != '\n' && t[c[0]] != '\0')
-		|| (c[1] != 4 && c[1] != 0)
-		|| c[3] != 4 || c[4] < 6)
+		|| c[1] != 4 || c[3] != 4 || c[4] < 6)
 		error(tetros, 0);
 }
 

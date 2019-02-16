@@ -6,13 +6,13 @@
 /*   By: gdamion- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:31:23 by gdamion-          #+#    #+#             */
-/*   Updated: 2019/02/13 18:33:50 by gdamion-         ###   ########.fr       */
+/*   Updated: 2019/02/15 19:36:05 by gdamion-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	tetro_add(char **res, char **tetro, int *pos)
+void	tetro_add(char **res, char **tetro, int **pos)
 {
 	int i;
 	int j;
@@ -24,14 +24,14 @@ void	tetro_add(char **res, char **tetro, int *pos)
 		while (j < 4)
 		{
 			if (tetro[i][j] != '.')
-				res[pos[0] + i][pos[1] + j] = tetro[i][j];
+				res[(*pos)[0] + i][(*pos)[1] + j] = tetro[i][j];
 			j++;
 		}
 		i++;
 	}
 }
 
-void	tetro_del(char **res, char **tetro, int *pos)
+void	tetro_del(char **res, char **tetro, int **pos)
 {
 	int i;
 	int j;
@@ -44,7 +44,7 @@ void	tetro_del(char **res, char **tetro, int *pos)
 		{
 			if (tetro[i][j] != '.')
 			{
-				res[pos[0] + i][pos[1] + j] = '.';
+				res[(*pos)[0] + i][(*pos)[1] + j] = '.';
 			}
 			j++;
 		}

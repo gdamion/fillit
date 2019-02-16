@@ -6,7 +6,7 @@
 /*   By: gdamion- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:28:07 by gdamion-          #+#    #+#             */
-/*   Updated: 2019/02/13 18:29:44 by gdamion-         ###   ########.fr       */
+/*   Updated: 2019/02/15 20:29:56 by gdamion-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	error(char ***tetros, int a)
 		i++;
 	}
 	free(tetros);
-	if (!a)
+	if (a == 0)
 	{
 		ft_putendl("error");
 		exit(0);
