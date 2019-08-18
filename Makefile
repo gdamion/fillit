@@ -3,32 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcollio- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: gdamion- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 18:44:15 by gschuste          #+#    #+#              #
-#    Updated: 2019/02/16 15:02:51 by pcollio-         ###   ########.fr        #
+#    Updated: 2019/08/18 18:25:29 by gdamion-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-SRC_DIR = ./srcs
-INC_DIR = ./include
-LIB_DIR = ./lib
 
-SRC_NAME =	read1.c\
-			read2.c\
-			process1.c\
-			process2.c\
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
+
+SRC_DIR = ./src
+INC_DIR = ./inc
+LIB_DIR = ./libft
+
+INC = -I ./libft/inc -I ./inc
+
+SRC_NAME =	read1.c \
+			read2.c \
+			process1.c \
+			process2.c \
 			process3.c
-		
-LIB_SRC_NAME	=	ft_bzero.c\
-					ft_putendl.c\
-					ft_putstr.c\
-					ft_putchar.c
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
-LIB_SRC = $(addprefix $(LIB_DIR)/,$(LIB_SRC_NAME))
-OBJ =	$(SRC_NAME:.c=.o) $(LIB_SRC_NAME:.c=.o)
+OBJ =	$(SRC_NAME:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
@@ -36,13 +37,15 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	@gcc $(FLAGS) -c $(SRC) $(LIB_SRC)
+	@gcc libft/libft.a $(FLAGS) -c $(SRC) $(INC)
+	@echo "$(GREEN)Object files are created!$(RESET)"
 	@gcc $(OBJ) -o $(NAME)
+	@echo "$(GREEN)./fillit file is created!$(RESET)"
 
 clean:
-	@/bin/Rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdamion- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 16:42:54 by pcollio-          #+#    #+#             */
-/*   Updated: 2019/02/16 15:35:25 by pcollio-         ###   ########.fr       */
+/*   Updated: 2019/08/18 18:19:15 by gdamion-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
+#ifndef FILLIT_H
+# define FILLIT_H
 
-# define HEADER_H
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "../lib/libft.h"
+# include "libft.h"
 
 int		main(int argc, char **argv);
 int		sqrt_spec(int fnum);
